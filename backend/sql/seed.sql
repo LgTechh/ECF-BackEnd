@@ -1,23 +1,16 @@
--- ⚠️ Exécute ceci après avoir lancé sqlite3 et chargé ta base avec le script init.sql
-
--- Cycles
 INSERT INTO Cycle (nom) VALUES ('Cycle 3');
 
--- Classes
 INSERT INTO Classe (nom, cycle_id) VALUES ('CM1', 1);
 INSERT INTO Classe (nom, cycle_id) VALUES ('CM2', 1);
 
--- Thèmes CM1
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('Et avant la France ?', 'CM1', 1);
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('Le temps des rois', 'CM1', 1);
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('Le temps de la Révolution et de l''Empire', 'CM1', 1);
 
--- Thèmes CM2
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('Le temps de la République', 'CM2', 2);
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('L''âge industriel en France', 'CM2', 2);
 INSERT INTO Theme (nom, annee, classe_id) VALUES ('La France, des guerres mondiales à l''Union européenne', 'CM2', 2);
 
--- Périodes
 INSERT INTO Periode (nom, theme_id) VALUES ('La Gaule celtique', 1);
 INSERT INTO Periode (nom, theme_id) VALUES ('La conquête romaine', 1);
 INSERT INTO Periode (nom, theme_id) VALUES ('Le règne de Louis XIV', 2);
@@ -31,7 +24,6 @@ INSERT INTO Periode (nom, theme_id) VALUES ('Première Guerre mondiale', 6);
 INSERT INTO Periode (nom, theme_id) VALUES ('Seconde Guerre mondiale', 6);
 INSERT INTO Periode (nom, theme_id) VALUES ('Construction européenne', 6);
 
--- Événements
 INSERT INTO Evenement (titre, description, date, lien, image_url, periode_id)
 VALUES (
            'Prise de la Bastille',
@@ -92,6 +84,5 @@ VALUES (
            12
        );
 
--- Liens classe / événement (Prise de la Bastille partagée CM1/CM2)
 INSERT INTO Classe_Evenement (classe_id, evenement_id) VALUES (1, 1); -- CM1
 INSERT INTO Classe_Evenement (classe_id, evenement_id) VALUES (2, 1); -- CM2
