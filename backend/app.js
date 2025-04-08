@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import config from '../config.js';
 import eventRoutes from './src/routes/eventRoutes.js';
 import periodeRoutes from './src/routes/periodeRoutes.js';
+import authRoutes from './src/routes/authRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,6 +30,8 @@ console.log("Enregistrement des routes : /api/events");
 app.use('/api/events', eventRoutes);
 
 app.use('/api/periodes', periodeRoutes);
+
+app.use('/api/auth', authRoutes);
 
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
