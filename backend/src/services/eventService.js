@@ -1,6 +1,29 @@
 import { eventRepository } from '../repositories/eventRepository.js';
 import { validerEvent } from '../models/eventModel.js';
+import DOMPurify from "dompurify";
+import { JSDOM } from 'jsdom';
 
+
+
+const { window } = new JSDOM('');
+const purify = DOMPurify(window);
+
+const sanitizeData = (data) => {
+    if (typeof data !== 'object' || data === null) return data;
+
+    const sanitized = {};
+    for (const [key, value] of Object.entries(data)) {
+        if (typeof value === 'string') {
+            // Sanitize toutes les chaînes pour éviter XSS
+            sanitized[key] = purify.sanitize(value);
+        } else if (typeof value === 'object' && value !== null) {
+            sanitized[key] = sanitizeData(value);
+        } else {
+            sanitized[key] = value;
+        }
+    }
+        return sanitized;
+};
 export const eventService = {
     // Créer un événement
     createEvent: async (eventData) => {
