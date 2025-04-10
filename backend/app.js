@@ -6,7 +6,7 @@ import config from '../config.js';
 import eventRoutes from './src/routes/eventRoutes.js';
 import periodeRoutes from './src/routes/periodeRoutes.js';
 import authRoutes from './src/routes/authRoutes.js';
-import csrf from 'csurf';
+import {csrfProtection} from "./src/middlewares/csrfMiddleware.js";
 import cookieParser from 'cookie-parser';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,14 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-const csrfProtection = csrf({
-    cookie: {
-        httpOnly: true,
-        secure: false,
-        sameSite: 'strict'
-    }
-});
-
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -57,16 +49,16 @@ app.use((req, res, next) => {
     next();
 });
 
-// Endpoint pour fournir un token CSRF aux clients
-app.get('/api/csrf-token', csrfProtection, (req, res) => {
-    res.json({ csrfToken: req.csrfToken() });
-});
-
 console.log("Enregistrement des routes : /api/events");
 
 app.use('/api/events', eventRoutes);
 app.use('/api/periodes', periodeRoutes);
 app.use('/api/auth', authRoutes);
+
+// Endpoint pour fournir un token CSRF aux clients
+app.get('/api/csrf-token', csrfProtection, (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+});
 
 app.use(express.static(path.join(__dirname, '../frontend/public'), {
     setHeaders: (res, path) => {
