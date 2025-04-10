@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Administration - Frise Historique</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand-title">Frise Historique</div>
+    <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </a>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="#" id="logout-link">Déconnexion</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="admin-container">
+    <h1>Panneau d'administration</h1>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="periodes" onclick="openTab('periodes')">Périodes</button>
+        <button class="tab-button" data-tab="evenements" onclick="openTab('evenements')">Événements</button>
+    </div>
+
+    <!-- Onglet Périodes -->
+    <div id="periodes" class="tab-content">
+        <div class="tab-header">
+            <h2>Gestion des périodes</h2>
+            <button class="btn-add" onclick="showPeriodeForm()">Ajouter une période</button>
+        </div>
+
+        <table id="periodes-table" class="admin-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Thème</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div id="periode-form" class="admin-form" style="display: none;">
+            <h3>Ajouter/Modifier une période</h3>
+            <form id="form-periode">
+                <input type="hidden" id="periode-id">
+
+                <div class="form-group">
+                    <label for="periode-nom">Nom</label>
+                    <input type="text" id="periode-nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="periode-theme">Thème</label>
+                    <select id="periode-theme" required>
+                        <option value="">Sélectionnez un thème</option>
+                    </select>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="hidePeriodeForm()">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="evenements" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <h2>Gestion des événements</h2>
+            <button class="btn-add" onclick="showEvenementForm()">Ajouter un événement</button>
+        </div>
+
+        <table id="evenements-table" class="admin-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Période</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div id="evenement-form" class="admin-form" style="display: none;">
+            <h3>Ajouter/Modifier un événement</h3>
+            <form id="form-evenement">
+                <input type="hidden" id="evenement-id">
+
+                <div class="form-group">
+                    <label for="evenement-titre">Titre</label>
+                    <input type="text" id="evenement-titre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="evenement-description">Description</label>
+                    <textarea id="evenement-description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="evenement-date">Date</label>
+                    <input type="date" id="evenement-date">
+                </div>
+
+                <div class="form-group">
+                    <label for="evenement-lien">Lien</label>
+                    <input type="url" id="evenement-lien">
+                </div>
+
+                <div class="form-group">
+                    <label for="evenement-image">URL de l'image</label>
+                    <input type="url" id="evenement-image">
+                </div>
+
+                <div class="form-group">
+                    <label for="evenement-periode">Période</label>
+                    <select id="evenement-periode" required>
+                        <option value="">Sélectionnez une période</option>
+                    </select>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save">Enregistrer</button>
+                    <button type="button" class="btn-cancel" onclick="hideEvenementForm()">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
