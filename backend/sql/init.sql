@@ -47,6 +47,6 @@ CREATE TABLE Periode_Evenement (
                                   periode_id INTEGER NOT NULL,
                                   evenement_id INTEGER NOT NULL,
                                   PRIMARY KEY (periode_id, evenement_id),
-                                  FOREIGN KEY periode_id) REFERENCES Periode(id),
+                                  FOREIGN KEY (periode_id) REFERENCES Periode(id),
                                   FOREIGN KEY (evenement_id) REFERENCES Evenement(id)
 );
