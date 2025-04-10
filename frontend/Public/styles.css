@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Merriweather&family=Playfair+Display:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Merriweather', sans-serif;
+    background-color: #F8F9FA;
+    color: #333;
+    min-height: 100%;
+}
+
+.body404 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: lightpink;
+}
+
+/* Header et Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: #D4AF37;
+    font-size: 1.5rem;
+}
+
+.navbar-links ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    display: block;
+    font-family: 'Merriweather', sans-serif;
+}
+
+.navbar-links li a:hover {
+    color: #D4AF37;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+header img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #D4AF37;
+    margin-bottom: 20px;
+}
+
+.pageIntro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 20px;
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+.pageIntro p {
+    font-family: 'EB Garamond', serif;
+}
+
+.startSite {
+    background: linear-gradient(45deg, #8B5E3C, #C49A6C);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.startSite::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.startSite:hover::before {
+    left: 100%;
+}
+
+.startSite:hover {
+    transform: scale(1.05);
+}
+
+.pageContent {
+    display: none;
+}
+
+/* Periods & Events Display */
+.periods-container {
+    margin-bottom: 40px;
+}
+
+.periods-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.period-button {
+    background-color: #E9ECEF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-family: 'Merriweather', sans-serif;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.period-button:hover {
+    background-color: #D4AF37;
+    color: white;
+}
+
+.period-button.active {
+    background-color: #D4AF37;
+    color: white;
+}
+
+.events-list {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.event-item {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.event-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    font-size: 0.9rem;
+    color: #7D3C98;
+    font-weight: bold;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1001;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+}
+
+.modal-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding: 10px 0;
+}
+
+#modal-title {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#modal-description {
+    text-align: left;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-lien {
+    all: unset;
+    display: block;
+    margin-left: auto;
+}
+
+.modal-lien a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+#modal-periode {
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1em;
+}
+
+#modal-date {
+    color: #7D3C98;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Login Page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-login {
+    background-color: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #C49A6C;
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.message-error {
+    background-color: #ffebee;
+    color: #c62828;
+    display: block;
+}
+
+.message-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    display: block;
+}
+
+/* Admin Page */
+.admin-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-button.active {
+    background-color: #D4AF37;
+    color: white;
+}
+
+.tab-content {
+    padding: 20px 0;
+}
+
+.btn-add {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table th {
+    background-color: #f2f2f2;
+}
+
+.admin-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #F44336;
+    color: white;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    background-color: #E9ECEF;
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Merriweather', serif;
+    border-top: 2px solid #ddd;
+    width: 100%;
+}
+
+footer .copyright {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+footer .citation {
+    font-size: 12px;
+    font-style: italic;
+    color: #D4AF37;
+}
+
+/* Animations */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.visible {
+    opacity: 1;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-links li {
+        text-align: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .header {
+        height: 150px;
+    }
+
+    .admin-table {
+        font-size: 14px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
