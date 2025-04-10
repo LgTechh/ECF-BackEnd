@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=5">
+  <meta name="description" content="Découvrez l'histoire de l'humanité">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="styles.css">
+  <title>Historical Moments</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand">Historical Moments</div>
+  <a href="#" class="toggle-button">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </a>
+  <div class="navbar-links">
+    <ul>
+      <li><a href="#" class="home-link">Accueil</a></li>
+      <li><a href="login.html" class="login-link">Connexion</a></li>
+    </ul>
+  </div>
+</nav>
+<header>
+  <img class="header" src="img/nHeaderPc.webp" alt="Photo Header">
+</header>
+<main>
+  <div class="pageIntro">
+    <h1>Introduction</h1>
+    <p>Sur ce site, vous pourrez découvrir des moments clés de l'histoire de l'humanité</p>
+    <p>Choisissez une période pour explorer les événements historiques</p>
+    <p>Bon amusement</p>
+    <button class="startSite">Commencer l'aventure</button>
+  </div>
+
+  <div class="pageContent">
+    <div class="periods-container">
+      <h2>Périodes historiques</h2>
+      <div class="periods-buttons" id="periods-buttons">
+      </div>
+    </div>
+
+    <div class="events-container" id="events-container">
+      <h2 id="selected-period-title">Sélectionnez une période</h2>
+      <ul class="events-list" id="events-list">
+      </ul>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-image" src="" alt="">
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <button class="modal-lien"><a id="modal-lien" href="">🔗</a></button>
+        <div class="modal-footer">
+          <p id="modal-periode"></p>
+          <p id="modal-date"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p class="copyright">© 2025 - Vanhelle Valentin</p>
+  <p class="citation">"Celui qui ne connaît pas l'histoire est condamné à la revivre." - George Santayana</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
