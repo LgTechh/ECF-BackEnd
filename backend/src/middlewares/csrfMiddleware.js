@@ -1,5 +1,5 @@
 import csrf from 'csurf';
-import cookieParser from 'cookie-parser';
+
 
 export const csrfProtection = csrf({
     cookie: {
